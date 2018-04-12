@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'carringtonregular';
+    src: url('fonts/Carrington-webfont.eot');
+    src: url('fonts/Carrington-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Carrington-webfont.woff') format('woff'),
+    url('fonts/Carrington-webfont.ttf') format('truetype'),
+    url('fonts/Carrington-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+#title{
+    font-family: carringtonregular, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    color: black;
+}
+
+#title:hover{
+    text-decoration: none;
+}
+
+.container{
+    flex: 1 0 auto;
+    margin-bottom: 2em;
+}
+
+#menu{
+    background-color: mediumturquoise;
+    width: 100%;
+    margin: auto;
+    text-decoration: white;
+    position: fixed;
+    z-index: 1;
+}
+
+#footer{
+    flex-shrink: 0;
+    text-align: center;
+    background-color: mediumturquoise;
+}
+
+nav a{
+    color:white;
+}
+
+#commentAdd{
+    margin-bottom: 1em;
+}
+
+.commentStyle{
+    border: solid 1px;
+    border-radius: 1em;
+    text-align: center;
+
+}
+
+/* Page de la liste des films*/
+#listMovies {
+    box-shadow: 8px 8px 12px #aaa;
+    transition: all 0.3s;
+}
+
+/* Pour agrandir au passage de la souris */
+#listMovies:hover{
+    transform: scale(1.1);
+    box-shadow: 8px 8px 12px mediumturquoise;
+}
+
+
+/* Page de détail d'un film */
+#backgrImg{
+    min-height: 600px;
+    text-align: center;
+}
+
+.card{
+    color: white;
+}
+
+#encartDetail{
+    display: flex;
+    flex-direction: row;
+    opacity: 0.7;
+    border-radius: 2%;
+    margin: 1em;
+}
+
+iframe {
+    margin: auto;
+}
+
+.trailer{
+    text-align: center;
+    margin-top: 1em;
+}
+
+#encartVideo{
+    background-color: #0000F0;
+}
+
+input{
+    min-width: 450px;
+    text-align: center;
+}
+
+.cardComment{
+    color: black;
+}
+
+#filter-form{
+    display: flex;
+
+}

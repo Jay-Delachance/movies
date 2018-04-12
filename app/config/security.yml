@@ -1,0 +1,49 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    # d'où viennent les utilisateurs ? De la base de données
+    providers:
+        our_db_provider:
+            entity:
+                class: AppBundle\Entity\User
+                property: username
+
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        # désactive le système de sécurité sur le profiler (zone de debug)
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            logout_on_user_change: true
+
+            # fait en sorte que les utilisateurs qui ne sont pas connectés peuvent accéder aux pages
+            anonymous: ~
+
+            #si l'url commence par un / alors on veut activer le parefeux
+            pattern: ^/
+
+            #formulaire de login
+            form_login:
+                login_path: login
+                check_path: login
+
+            logout:
+                path: logout
+                target: movie_list
+
+    #pour définir les algorithmes de hashages utilisés
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 13
+
+
+    # l'url commence par admin. C'est le ^ qui signifie que ça va commencer comme ça. Terminer par, on metttrait /admin$
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="row">
+        {% if app.user %}
+            {#on fait une boucle for dans la variable tableau todos (qu'on a créée dans le TodoController pour afficher la liste des idées et leur date#}
+            {% for poster in posters %}
+                <div class="card m-3 mx-auto shadow" id="listMovies" style="width: 12rem;">
+                    {# le tild permet de concaténer. Le poster.imdbId permet d'aller chercher l'id dans la table sql.
+                    Cet id est équivalent au nom du fichier jpg sans l'extension #}
+                    <a href="{{ path('movie_detail', {slug: poster.slug}) }}">
+                        <img class="img-fluid" src="{{ asset('posters/' ~ poster.imdbId ~ '.jpg') }}" alt="Affiche du film"></a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{# On redéfinit le block title qui est dans le fichier base.html.twig #}
+    {% block title %}Movies | {% endblock %}

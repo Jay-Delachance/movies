@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Créez votre compte !</h1>
+
+    {# affiche la balise d'ouverture du formulaire #}
+    {{ form_start(registerForm) }}
+
+    {# affiche les champs du formulaire #}
+    {{ form_widget(registerForm) }}
+
+    <button>C'est parti !</button>
+
+    {# affiche la balise de fermeture du formulaire #}
+    {{ form_end(registerForm) }}
+
+{% endblock %}

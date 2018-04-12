@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+
+<div class="mx-auto my-auto row align-items-center" id="backgrImg"
+     style="background-image: url({{ asset('backdrops/' ~ details.imdbId ~ '.jpg') }});">
+    <div class="card" id="encartDetail" style="background-color: #333333">
+        <img class="img-fluid" src="{{ asset('posters/' ~ details.imdbId ~ '.jpg') }}" alt="Affiche du film"
+        style="margin-left: 1em;">
+        <div class="card-body">
+            <h1>{{ details.title }}</h1>
+            <p>Note : {{ details.rating|round(1) }}/10 | Votes : {{ details.votes }}</p>
+            <p>Actors : {{ details.actors|join(' | ')}}</p>
+            <p>Directors : {{ details.directors|join(' | ') }}</p>
+            <p>Scripwriters : {{ details.writers|join(' | ') }}</p>
+            <p>Plot : {{ details.plot }}</p>
+
+
+            {% if previousVote %}
+            <p>Déjà voté</p>
+            {% else %}
+                {% if app.user %}
+                    {# affichage du formulaire #}
+                    {{ form_start(voteMovieForm, {attr: {'novalidate': 'novalidate'}}) }}
+                    {#Affiche tous les champs#}
+                    {{ form_widget(voteMovieForm) }}
+                    <button class="btn btn-success">Envoyer !</button>
+                    {#affiche la balise de fermeture du formulaire#}
+                    {{ form_end(voteMovieForm) }}
+                {% else %}
+                    <p>Connectez-vous pour voter !</p>
+                {% endif %}
+            {% endif %}
+
+
+
+                {% if app.user %}
+                    {# le "details" est celui du rend de la fonction detailAction du MovieController #}
+                    <a id="js-addWatch-btn" data-add-ajax-url="{{ path('add_watchlist', {id: details.id}) }}"
+                       class="btn btn-success" href="{{ path('add_watchlist', {id: details.id}) }}">Ajouter à la watchlist!</a>
+                    <a id="js-delWatch-btn" data-del-ajax-url="{{ path('del_watchlist', {id: details.id}) }}"
+                       class="btn btn-danger" href="{{ path('del_watchlist', {id: details.id}) }}">Supprimer de la watchlist!</a>
+                {% endif %}
+
+        </div>
+    </div>
+
+
+</div>
+
+    <div class="card" style="background-color: #DDDDDD";>
+    <div class="trailer">
+    <iframe width="560" height="315" src={{ asset('https://www.youtube.com/embed/' ~ details.trailerId) }} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    </div>
+
+
+
+
+
+    <div>
+        <h2>Poster votre critique    </h2>
+        {# affichage du formulaire #}
+        {{ form_start(commentForm, {attr: {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(commentForm) }}
+        <button class="btn btn-success">Envoyer !</button>
+        {{ form_end(commentForm) }}
+    </div>
+
+    {% if comments %}
+        <div class="card" style="width: 40rem; color: black; margin: auto">
+            <div class="card-header">
+                <h2 style="text-align: center">Vos critiques</h2>
+            </div>
+            {%  for comment in comments %}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ comment.title }}<br/>
+                        Ecrit par {{  comment.username }} le {{ comment.dateCreated|date("d-m-Y") }}
+                    <br/>{{ comment.content }}</li>
+                </ul>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+

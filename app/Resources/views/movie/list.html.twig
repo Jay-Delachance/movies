@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <script>
+        function submitForm() {
+            var form = document.getElementById("filter-form")
+            form.submit()
+        }
+    </script>
+
+
+
+    {# en tapant juste le dump(app) on aura l'arborescent pour arriver jusqu'au cat#}
+    {# on remet ce bout de code au début de l'option. On vérifie qu'il y a bien un id sélection et on l'affiche dans le dump#}
+    {#{{  dump(app.request.query.get('cat')) }}#}
+
+    <form id="filter-form" style="justify-content: space-between" >
+        {# on appelle la fonction submit form de javascript dans le onchange#}
+        <select name="genreId" onchange="submitForm()" class="form-control input-sm" style="max-width: 10em;">
+            <option value="">Genre...</option>
+            {% for genre in genres %}
+                {# la value va être le genre du genre. On met capitalize pour mettre le nom de la genre en majuscules #}
+                <option {{ app.request.query.get('genreId')
+                == genre.id ? "selected" : "" }} value="{{ genre.id }}">{{ genre.name|capitalize }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="yearMin" onchange="submitForm()" class="form-control input-sm" style="max-width: 10em;">
+            <option value="">Année min...</option>
+            {% for year in years %}
+                <option {{ app.request.query.get('yearMin')
+                == year.year ? "selected" : "" }} value="{{ year.year }}">{{ year.year }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="yearMax" onchange="submitForm()" class="form-control input-sm" style="max-width: 10em;">
+            <option value="">Année max...</option>
+            {% for year in years %}
+                <option {{ app.request.query.get('yearMax')
+                == year.year ? "selected" : "" }} value="{{ year.year }}">{{ year.year }}</option>
+                {# le premier year est la variable d'entrée et le second est l'attribut de la table#}
+            {% endfor %}
+        </select>
+
+        <div class="form-inline">
+            {# bien penser à nommer l'input et à mettre la value avec l'url du keyword#}
+            <input name="keyword" type="search" class="form-control input-sm @cell" placeholder="text" value="{{ app.request.query.get('keyword') }}">
+            <button type="submit" class="btn btn-success">Rechercher</button>
+
+        </div>
+    </form>
+
+
+    <div class="row">
+        {#on fait une boucle for dans la variable tableau todos (qu'on a créée dans le TodoController pour afficher la liste des idées et leur date#}
+        {% for poster in posters %}
+            <div class="card m-3 mx-auto shadow" id="listMovies" style="width: 12rem;">
+                {# le tild permet de concaténer. Le poster.imdbId permet d'aller chercher l'id dans la table sql.
+                Cet id est équivalent au nom du fichier jpg sans l'extension #}
+                <a href="{{ path('movie_detail', {slug: poster.slug}) }}">
+                    <img class="img-fluid" src="{{ asset('posters/' ~ poster.imdbId ~ '.jpg') }}" alt="Affiche du film"></a>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+{# On redéfinit le block title qui est dans le fichier base.html.twig #}
+    {% block title %}Movies | {% endblock %}

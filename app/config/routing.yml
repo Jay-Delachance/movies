@@ -1,0 +1,58 @@
+movie_list:
+    path: /
+    defaults: { _controller: AppBundle:Movie:list }
+
+movie_detail:
+    path: /details/{slug}
+    defaults: { _controller: AppBundle:Movie:detail }
+
+
+
+# security #
+
+# route vers la page page de création de compte
+register:
+    path: /inscription
+    defaults: { _controller: AppBundle:User:register }
+
+# route vers la page de connexion
+# ce nom de route est utilisé dans security.yml, ne pas changer
+login:
+    path: /connexion
+    defaults: { _controller: AppBundle:User:login }
+
+logout:
+    path: /deconnexion
+    #pas besoin du defaults, Symfony gère la déconnexion lui-même
+
+
+
+# api #
+api_notes_post:
+    path: /movies/{slug}/notes
+    defaults: { _controller: AppBundle:Api/VoteMovie:post }
+    methods: [POST] #si la requête est de type post, appelle-la
+
+
+
+# notation d'un film
+movie_note:
+    path: /note/{id}
+    defaults: { _controller: AppBundle:VoteMovie:note }
+
+
+# page de watchlist
+watchlist:
+    path: /watchlist
+    defaults: { _controller : AppBundle:User:watchlist}
+
+# ajout d'item à la watchlist
+add_watchlist:
+    path: /addItem/{id} #on prend l'id du user connecté#
+    defaults: { _controller: AppBundle:User:add}
+
+
+# suppression d'item de la watchlist
+del_watchlist:
+    path: /delItem/{id}
+    defaults: { _controller: AppBundle:User:delete}
