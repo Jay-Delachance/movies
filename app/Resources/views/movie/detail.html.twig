@@ -6,7 +6,7 @@
 <div class="mx-auto my-auto row align-items-center" id="backgrImg"
      style="background-image: url({{ asset('backdrops/' ~ details.imdbId ~ '.jpg') }});">
     <div class="card" id="encartDetail" style="background-color: #333333">
-        <img class="img-fluid" src="{{ asset('posters/' ~ details.imdbId ~ '.jpg') }}" alt="Affiche du film"
+        <img class="img-fluid" src="{{ asset('posters/' ~ details.imdbId ~ '.jpg') }}" alt="Movie's poster"
         style="margin-left: 1em;">
         <div class="card-body">
             <h1>{{ details.title }}</h1>
@@ -25,11 +25,11 @@
                     {{ form_start(voteMovieForm, {attr: {'novalidate': 'novalidate'}}) }}
                     {#Affiche tous les champs#}
                     {{ form_widget(voteMovieForm) }}
-                    <button class="btn btn-success">Envoyer !</button>
+                    <button class="btn btn-success">Send !</button>
                     {#affiche la balise de fermeture du formulaire#}
                     {{ form_end(voteMovieForm) }}
                 {% else %}
-                    <p>Connectez-vous pour voter !</p>
+                    <p>Log in to vote !</p>
                 {% endif %}
             {% endif %}
 
@@ -38,9 +38,9 @@
                 {% if app.user %}
                     {# le "details" est celui du rend de la fonction detailAction du MovieController #}
                     <a id="js-addWatch-btn" data-add-ajax-url="{{ path('add_watchlist', {id: details.id}) }}"
-                       class="btn btn-success" href="{{ path('add_watchlist', {id: details.id}) }}">Ajouter à la watchlist!</a>
+                       class="btn btn-success" href="{{ path('add_watchlist', {id: details.id}) }}">Add to the watchlist!</a>
                     <a id="js-delWatch-btn" data-del-ajax-url="{{ path('del_watchlist', {id: details.id}) }}"
-                       class="btn btn-danger" href="{{ path('del_watchlist', {id: details.id}) }}">Supprimer de la watchlist!</a>
+                       class="btn btn-danger" href="{{ path('del_watchlist', {id: details.id}) }}">Delete from the watchlist!</a>
                 {% endif %}
 
         </div>
@@ -60,23 +60,23 @@
 
 
     <div>
-        <h2>Poster votre critique    </h2>
+        <h2>Post your review</h2>
         {# affichage du formulaire #}
         {{ form_start(commentForm, {attr: {'novalidate': 'novalidate'}}) }}
         {{ form_widget(commentForm) }}
-        <button class="btn btn-success">Envoyer !</button>
+        <button class="btn btn-success">Send !</button>
         {{ form_end(commentForm) }}
     </div>
 
     {% if comments %}
         <div class="card" style="width: 40rem; color: black; margin: auto">
             <div class="card-header">
-                <h2 style="text-align: center">Vos critiques</h2>
+                <h2 style="text-align: center">Your reviews</h2>
             </div>
             {%  for comment in comments %}
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ comment.title }}<br/>
-                        Ecrit par {{  comment.username }} le {{ comment.dateCreated|date("d-m-Y") }}
+                        Written by {{  comment.username }} on {{ comment.dateCreated|date("d-m-Y") }}
                     <br/>{{ comment.content }}</li>
                 </ul>
             {% endfor %}

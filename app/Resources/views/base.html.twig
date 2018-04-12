@@ -12,14 +12,14 @@
 
     <div>
         <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('movie_list') }}">Accueil</a>
+            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('movie_list') }}">Home</a>
             {%  if app.user %}
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('logout') }}">Déconnexion</a>
+                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('logout') }}">Log out</a>
                 <a class="flex-sm fill text-sm-center nav-link" href="">Connecté : {{ app.user.username }}</a>
                 <a class="flex-sm fill text-sm-center nav-link" href="{{ path('watchlist') }}">Watchlist</a>
             {% else %}
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('login') }}">Connexion</a>
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('register') }}">Inscription</a>
+                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('login') }}">Log in</a>
+                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('register') }}">Join</a>
             {% endif %}
 
         </nav>

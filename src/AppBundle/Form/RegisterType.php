@@ -22,9 +22,9 @@ class RegisterType extends AbstractType
             // RepeatedType pour afficher 2 fois le champ et vérifier que la donnée entrée est la même
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Encore'],
-                'invalid_message' => 'Vos mots de passe doivent être identiques'
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => 'Again'],
+                'invalid_message' => 'Your passwords must be identical'
             ]);
     }/**
      * {@inheritdoc}

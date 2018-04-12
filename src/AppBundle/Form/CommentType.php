@@ -19,10 +19,10 @@ class CommentType extends AbstractType
         // Symfony sait quel type de champ on a besoin avec les annotations qu'on a mises dans l'entity du comment.php
         $builder
             ->add('title', TextType::class, [
-                "label" => "Titre de votre critique"
+                "label" => "Your review's title"
             ])
             ->add('content', TextareaType::class, [
-                "label" => "Votre critique"
+                "label" => "Your review"
             ]);
     }
 

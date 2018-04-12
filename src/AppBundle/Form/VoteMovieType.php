@@ -18,7 +18,7 @@ class VoteMovieType extends AbstractType
         // Symfony sait quel type de champ on a besoin avec les annotations qu'on a mises dans l'entity du comment.php
         $builder
 
-            ->add('vote', IntegerType::class, ["label" => "Votre note de 1 à 10 où 10 est attribué à un chef d'oeuvre et 1 à un navet"]);
+            ->add('vote', IntegerType::class, ["label" => "Your note from 1 to 10 where 10 is a masterpiece and 1 is a terrible movie"]);
     }
 
     /**

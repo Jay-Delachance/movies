@@ -27,7 +27,7 @@
         </select>
 
         <select name="yearMin" onchange="submitForm()" class="form-control input-sm" style="max-width: 10em;">
-            <option value="">Année min...</option>
+            <option value="">Year min...</option>
             {% for year in years %}
                 <option {{ app.request.query.get('yearMin')
                 == year.year ? "selected" : "" }} value="{{ year.year }}">{{ year.year }}</option>
@@ -35,7 +35,7 @@
         </select>
 
         <select name="yearMax" onchange="submitForm()" class="form-control input-sm" style="max-width: 10em;">
-            <option value="">Année max...</option>
+            <option value="">Year max...</option>
             {% for year in years %}
                 <option {{ app.request.query.get('yearMax')
                 == year.year ? "selected" : "" }} value="{{ year.year }}">{{ year.year }}</option>
@@ -46,7 +46,7 @@
         <div class="form-inline">
             {# bien penser à nommer l'input et à mettre la value avec l'url du keyword#}
             <input name="keyword" type="search" class="form-control input-sm @cell" placeholder="text" value="{{ app.request.query.get('keyword') }}">
-            <button type="submit" class="btn btn-success">Rechercher</button>
+            <button type="submit" class="btn btn-success">Search</button>
 
         </div>
     </form>
@@ -59,7 +59,7 @@
                 {# le tild permet de concaténer. Le poster.imdbId permet d'aller chercher l'id dans la table sql.
                 Cet id est équivalent au nom du fichier jpg sans l'extension #}
                 <a href="{{ path('movie_detail', {slug: poster.slug}) }}">
-                    <img class="img-fluid" src="{{ asset('posters/' ~ poster.imdbId ~ '.jpg') }}" alt="Affiche du film"></a>
+                    <img class="img-fluid" src="{{ asset('posters/' ~ poster.imdbId ~ '.jpg') }}" alt="Movie's poster"></a>
             </div>
         {% endfor %}
     </div>
