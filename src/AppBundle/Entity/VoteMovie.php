@@ -2,12 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert; // nous donne accès à l'annotation Assert avec laquelle on teste si quelque chose est vrai
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+// nous donne accès à l'annotation Assert avec laquelle on teste si quelque chose est vrai
 
 /**
  * Vote
@@ -58,14 +53,12 @@ class VoteMovie
     private $user;
 
 
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateVoted", type="datetime")
      */
     private $dateVoted;
-
 
 
     public function __construct()
@@ -107,7 +100,6 @@ class VoteMovie
     {
         return $this->dateVoted;
     }
-
 
 
     /**

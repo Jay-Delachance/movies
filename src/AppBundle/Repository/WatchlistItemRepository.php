@@ -12,6 +12,4 @@ class WatchlistItemRepository extends \Doctrine\ORM\EntityRepository
 {
 
 
-
-
 }

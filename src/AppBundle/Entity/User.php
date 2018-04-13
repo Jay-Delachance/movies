@@ -2,12 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert; // nous donne accès à l'annotation Assert avec laquelle on teste si quelque chose est vrai
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+// nous donne accès à l'annotation Assert avec laquelle on teste si quelque chose est vrai
 
 /**
  * User
@@ -45,7 +43,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity= "AppBundle\Entity\VoteMovie", mappedBy="user")
      */
     private $votesMovie;
-
 
 
     /**
@@ -123,7 +120,6 @@ class User implements UserInterface
     {
         $this->username = $username;
     }
-
 
 
     /**
@@ -229,7 +225,9 @@ class User implements UserInterface
         return null;
     }
 
-    public function eraseCredentials(){}
+    public function eraseCredentials()
+    {
+    }
 
     /**
      * @return ArrayCollection
@@ -294,8 +292,6 @@ class User implements UserInterface
     {
         $this->watchlistItem = $watchlistItem;
     }
-
-
 
 
     /**

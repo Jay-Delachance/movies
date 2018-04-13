@@ -15,7 +15,7 @@
     {# on remet ce bout de code au début de l'option. On vérifie qu'il y a bien un id sélection et on l'affiche dans le dump#}
     {#{{  dump(app.request.query.get('cat')) }}#}
 
-    <form id="filter-form" style="justify-content: space-between" >
+    <form id="filter-form" style="justify-content: space-between">
         {# on appelle la fonction submit form de javascript dans le onchange#}
         <select name="genreId" onchange="submitForm()" class="form-control input-sm" style="max-width: 10em;">
             <option value="">Genre...</option>
@@ -45,7 +45,8 @@
 
         <div class="form-inline">
             {# bien penser à nommer l'input et à mettre la value avec l'url du keyword#}
-            <input name="keyword" type="search" class="form-control input-sm @cell" placeholder="text" value="{{ app.request.query.get('keyword') }}">
+            <input name="keyword" type="search" class="form-control input-sm @cell" placeholder="text"
+                   value="{{ app.request.query.get('keyword') }}">
             <button type="submit" class="btn btn-success">Search</button>
 
         </div>

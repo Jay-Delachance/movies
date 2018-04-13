@@ -10,7 +10,8 @@
                     {# le tild permet de concaténer. Le poster.imdbId permet d'aller chercher l'id dans la table sql.
                     Cet id est équivalent au nom du fichier jpg sans l'extension #}
                     <a href="{{ path('movie_detail', {slug: poster.slug}) }}">
-                        <img class="img-fluid" src="{{ asset('posters/' ~ poster.imdbId ~ '.jpg') }}" alt="Affiche du film"></a>
+                        <img class="img-fluid" src="{{ asset('posters/' ~ poster.imdbId ~ '.jpg') }}"
+                             alt="Affiche du film"></a>
                 </div>
             {% endfor %}
         {% endif %}

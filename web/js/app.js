@@ -4,7 +4,7 @@
 // web/js/app.js
 
 // mise sur écoute du bouton de vote
-$("#js-vote-btn").on("click", function(event){
+$("#js-vote-btn").on("click", function (event) {
     // on désactive le lien pour ne pas quitter la page
     event.preventDefault();
 
@@ -12,27 +12,25 @@ $("#js-vote-btn").on("click", function(event){
         url: $(this).attr("data-ajax-url"),
         type: "POST"
     })
-    .done(function(response) {
+        .done(function (response) {
 
-        if (response.status == "already_voted") {
-            alert("Déjà voté !")
-            $("#js-vote-btn").remove();
-        }
-        else {
-            //actualise le contenu de la balise affichant le nombre de likes
-            // en passant le likesCount en html (voir fichier detail.html.twig)
-            $("#js-votes-count").html( response.votesCount )
-        }
+            if (response.status == "already_voted") {
+                alert("Déjà voté !")
+                $("#js-vote-btn").remove();
+            }
+            else {
+                //actualise le contenu de la balise affichant le nombre de likes
+                // en passant le likesCount en html (voir fichier detail.html.twig)
+                $("#js-votes-count").html(response.votesCount)
+            }
 
 
-
-    })
+        })
 
 })
 
 
-
-$("#js-addWatch-btn").on("click", function(event){
+$("#js-addWatch-btn").on("click", function (event) {
     // on désactive le lien pour ne pas quitter la page
     event.preventDefault();
 
@@ -43,20 +41,20 @@ $("#js-addWatch-btn").on("click", function(event){
         type: "POST"
     })
 
-    .done(function(response) {
+        .done(function (response) {
 
-        if (response == "ok") {
-            alert('Item bien ajouté !')
-            $("#js-addWatch-btn").remove();
+            if (response == "ok") {
+                alert('Item bien ajouté !')
+                $("#js-addWatch-btn").remove();
 
-        } else if (response == 'not'){
-            alert("Déjà ajouté !")
-            $("#js-addWatch-btn").remove();
-        }
-    })
+            } else if (response == 'not') {
+                alert("Déjà ajouté !")
+                $("#js-addWatch-btn").remove();
+            }
+        })
 })
 
-$("#js-delWatch-btn").on("click", function(event){
+$("#js-delWatch-btn").on("click", function (event) {
     // on désactive le lien pour ne pas quitter la page
     event.preventDefault();
 
@@ -67,7 +65,7 @@ $("#js-delWatch-btn").on("click", function(event){
         type: "POST"
     })
 
-        .done(function(response) {
+        .done(function (response) {
 
             if (response == "ok") {
                 alert("Item bien supprimé !")

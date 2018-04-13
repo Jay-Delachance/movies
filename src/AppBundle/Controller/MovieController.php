@@ -10,7 +10,6 @@ use AppBundle\Form\CommentType;
 use AppBundle\Form\VoteMovieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class MovieController extends Controller
 {
@@ -39,7 +38,6 @@ class MovieController extends Controller
         $genreRepo = $this->getDoctrine()->getRepository(Genre::class);
 
         $genre = $genreRepo->findAll();
-
 
 
         return $this->render("movie/list.html.twig", [
@@ -72,7 +70,7 @@ class MovieController extends Controller
 
         $voteForm->handleRequest($request);
 
-        if($voteForm->isSubmitted() && $voteForm->isValid()){
+        if ($voteForm->isSubmitted() && $voteForm->isValid()) {
             $newVote->setMovie($movie);
 
             // on hydrate le nouveau vote en renseignant toutes ses propriétés
@@ -80,10 +78,9 @@ class MovieController extends Controller
             $newVote->setUser($this->getUser());
 
 
-
             // on recalcule la note globale du film
-            $movie->setVotes($movie->getVotes()+1);
-            $result=(($movie->getVotes()*$movie->getRating())+$newVote->getVote())/($movie->getVotes());
+            $movie->setVotes($movie->getVotes() + 1);
+            $result = (($movie->getVotes() * $movie->getRating()) + $newVote->getVote()) / ($movie->getVotes());
             $movie->setRating($result);
 
 
@@ -101,14 +98,13 @@ class MovieController extends Controller
         }
 
 
-
         // on met le formulaire de commentaire ici
         $comment = new Comment();
         $commentForm = $this->createForm(CommentType::class, $comment);
 
         $commentForm->handleRequest($request);
 
-        if($commentForm->isSubmitted() && $commentForm->isValid()){
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             // on renseigne le film dans le commentaire
             $comment->setMovie($movie);
             $comment->setUsername($this->getUser()->getUsername());
@@ -127,7 +123,7 @@ class MovieController extends Controller
 
 
         // on affiche une erreur 404 s'il l'id n'est pas trouvé
-        if (!$movie){
+        if (!$movie) {
             throw $this->createNotFoundException("Oups ! Cette idée n'existe pas !");
         }
 
@@ -169,7 +165,6 @@ class MovieController extends Controller
         // on indique le nom de la page vers laquelle on redirige l'utilisateur (la page détail de l'idée)
         return $this->redirectToRoute("movie_detail", ["slug" => $movie->getSlug()]);
     }
-
 
 
 }

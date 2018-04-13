@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Movies {% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Movies {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
 
-    <div>
-        <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
-            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('movie_list') }}">Home</a>
-            {%  if app.user %}
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('logout') }}">Log out</a>
-                <a class="flex-sm fill text-sm-center nav-link" href="">Connecté : {{ app.user.username }}</a>
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('watchlist') }}">Watchlist</a>
-            {% else %}
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('login') }}">Log in</a>
-                <a class="flex-sm fill text-sm-center nav-link" href="{{ path('register') }}">Join</a>
-            {% endif %}
+<div>
+    <nav class="nav nav-pills flex-column flex-sm-row" id="menu">
+        <a class="flex-sm fill text-sm-center nav-link" href="{{ path('movie_list') }}">Home</a>
+        {% if app.user %}
+            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('logout') }}">Log out</a>
+            <a class="flex-sm fill text-sm-center nav-link" href="">Connecté : {{ app.user.username }}</a>
+            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('watchlist') }}">Watchlist</a>
+        {% else %}
+            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('login') }}">Log in</a>
+            <a class="flex-sm fill text-sm-center nav-link" href="{{ path('register') }}">Join</a>
+        {% endif %}
 
-        </nav>
-    </div>
+    </nav>
+</div>
 
 
-        <div class="container">
+<div class="container">
 
-            {# le row couplé au mx-auto (margin horizontal auto) permet de centrer#}
-            <header>
+    {# le row couplé au mx-auto (margin horizontal auto) permet de centrer#}
+    <header>
 
-                <div class="row col-12">
-                    <h1 class="mx-auto my-5"><a href="{{ path('movie_list') }}" id="title">
-                            <img src="{{ asset('imgs/movies_logo.jpg') }}" alt="Movies logo"> Movies</a>
-                    </h1>
-                </div>
-            </header>
-
-            <main>
-                {% block main %}{% endblock %}
-            </main>
-
+        <div class="row col-12">
+            <h1 class="mx-auto my-5"><a href="{{ path('movie_list') }}" id="title">
+                    <img src="{{ asset('imgs/movies_logo.jpg') }}" alt="Movies logo"> Movies</a>
+            </h1>
         </div>
+    </header>
 
-        <footer id="footer">
-            <div>
-                <p>&copy; {{ "now"|date("Y") }} Movies</p>
-            </div>
-        </footer>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+</div>
+
+<footer id="footer">
+    <div>
+        <p>&copy; {{ "now"|date("Y") }} Movies</p>
+    </div>
+</footer>
 
 
-    {# on charge jquery avant de charge javascript #}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    {# Asset corrige le chemin d"accès au fichier au cas où celui-ci changerait #}
-    <script src="{{ asset('js/app.js') }}"></script>
-    {% block javascripts %}{% endblock %}
-    </body>
+{# on charge jquery avant de charge javascript #}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{# Asset corrige le chemin d"accès au fichier au cas où celui-ci changerait #}
+<script src="{{ asset('js/app.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>

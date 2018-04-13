@@ -3,56 +3,60 @@
 {% block main %}
 
 
-<div class="mx-auto my-auto row align-items-center" id="backgrImg"
-     style="background-image: url({{ asset('backdrops/' ~ details.imdbId ~ '.jpg') }});">
-    <div class="card" id="encartDetail" style="background-color: #333333">
-        <img class="img-fluid" src="{{ asset('posters/' ~ details.imdbId ~ '.jpg') }}" alt="Movie's poster"
-        style="margin-left: 1em;">
-        <div class="card-body">
-            <h1>{{ details.title }}</h1>
-            <p>Note : {{ details.rating|round(1) }}/10 | Votes : {{ details.votes }}</p>
-            <p>Actors : {{ details.actors|join(' | ')}}</p>
-            <p>Directors : {{ details.directors|join(' | ') }}</p>
-            <p>Scripwriters : {{ details.writers|join(' | ') }}</p>
-            <p>Plot : {{ details.plot }}</p>
+    <div class="mx-auto my-auto row align-items-center" id="backgrImg"
+         style="background-image: url({{ asset('backdrops/' ~ details.imdbId ~ '.jpg') }});">
+        <div class="card" id="encartDetail" style="background-color: #333333">
+            <img class="img-fluid" src="{{ asset('posters/' ~ details.imdbId ~ '.jpg') }}" alt="Movie's poster"
+                 style="margin-left: 1em;">
+            <div class="card-body">
+                <h1>{{ details.title }}</h1>
+                <p>Note : {{ details.rating|round(1) }}/10 | Votes : {{ details.votes }}</p>
+                <p>Actors : {{ details.actors|join(' | ') }}</p>
+                <p>Directors : {{ details.directors|join(' | ') }}</p>
+                <p>Scripwriters : {{ details.writers|join(' | ') }}</p>
+                <p>Plot : {{ details.plot }}</p>
 
 
-            {% if previousVote %}
-            <p>Déjà voté</p>
-            {% else %}
-                {% if app.user %}
-                    {# affichage du formulaire #}
-                    {{ form_start(voteMovieForm, {attr: {'novalidate': 'novalidate'}}) }}
-                    {#Affiche tous les champs#}
-                    {{ form_widget(voteMovieForm) }}
-                    <button class="btn btn-success">Send !</button>
-                    {#affiche la balise de fermeture du formulaire#}
-                    {{ form_end(voteMovieForm) }}
+                {% if previousVote %}
+                    <p>Déjà voté</p>
                 {% else %}
-                    <p>Log in to vote !</p>
+                    {% if app.user %}
+                        {# affichage du formulaire #}
+                        {{ form_start(voteMovieForm, {attr: {'novalidate': 'novalidate'}}) }}
+                        {#Affiche tous les champs#}
+                        {{ form_widget(voteMovieForm) }}
+                        <button class="btn btn-success">Send !</button>
+                        {#affiche la balise de fermeture du formulaire#}
+                        {{ form_end(voteMovieForm) }}
+                    {% else %}
+                        <p>Log in to vote !</p>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
 
 
 
                 {% if app.user %}
                     {# le "details" est celui du rend de la fonction detailAction du MovieController #}
                     <a id="js-addWatch-btn" data-add-ajax-url="{{ path('add_watchlist', {id: details.id}) }}"
-                       class="btn btn-success" href="{{ path('add_watchlist', {id: details.id}) }}">Add to the watchlist!</a>
+                       class="btn btn-success" href="{{ path('add_watchlist', {id: details.id}) }}">Add to the
+                        watchlist!</a>
                     <a id="js-delWatch-btn" data-del-ajax-url="{{ path('del_watchlist', {id: details.id}) }}"
-                       class="btn btn-danger" href="{{ path('del_watchlist', {id: details.id}) }}">Delete from the watchlist!</a>
+                       class="btn btn-danger" href="{{ path('del_watchlist', {id: details.id}) }}">Delete from the
+                        watchlist!</a>
                 {% endif %}
 
+            </div>
         </div>
+
+
     </div>
 
-
-</div>
-
-    <div class="card" style="background-color: #DDDDDD";>
-    <div class="trailer">
-    <iframe width="560" height="315" src={{ asset('https://www.youtube.com/embed/' ~ details.trailerId) }} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <div class="card" id="trailerCard">
+        <div class="trailer">
+            <iframe width="560" height="315"
+                    src={{ asset('https://www.youtube.com/embed/' ~ details.trailerId) }} frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
     </div>
 
 
@@ -73,11 +77,11 @@
             <div class="card-header">
                 <h2 style="text-align: center">Your reviews</h2>
             </div>
-            {%  for comment in comments %}
+            {% for comment in comments %}
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ comment.title }}<br/>
-                        Written by {{  comment.username }} on {{ comment.dateCreated|date("d-m-Y") }}
-                    <br/>{{ comment.content }}</li>
+                        Written by {{ comment.username }} on {{ comment.dateCreated|date("d-m-Y") }}
+                        <br/>{{ comment.content }}</li>
                 </ul>
             {% endfor %}
         </div>

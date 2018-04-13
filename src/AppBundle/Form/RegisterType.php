@@ -26,7 +26,9 @@ class RegisterType extends AbstractType
                 'second_options' => ['label' => 'Again'],
                 'invalid_message' => 'Your passwords must be identical'
             ]);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

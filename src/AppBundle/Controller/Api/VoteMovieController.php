@@ -3,11 +3,8 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Movie;
-
 use AppBundle\Entity\VoteMovie;
-use AppBundle\Repository\VoteMovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class VoteMovieController extends Controller
 {
@@ -25,25 +22,20 @@ class VoteMovieController extends Controller
         // on va rechercher le vote dont le user est... et le film est...
         $previousVote = $voteRepo->findOneBy(
             ['user' => $this->getUser(),
-            'movie' => $movie]
+                'movie' => $movie]
         );
 
 
         // On vérifie si l'utilisateur a déjà voté
-        if ($previousVote)
-        {
+        if ($previousVote) {
             // on est en Ajax donc l'addflash ne fonctionnera pas. Il faut du json
             return $this->json([
                 "status" => "already_voted",
             ]);
-        } else
-        {
+        } else {
             $movie->incrementLikes();
 
             $vote = new VoteMovie();
-
-
-
 
 
             // récupère l'Entity Manager
@@ -63,8 +55,6 @@ class VoteMovieController extends Controller
         // on indique le nom de la page vers laquelle on redirige l'utilisateur (la page de la liste des idées mise à jour)
         //return $this->redirectToRoute("movie_detail",  ["slug" => $slug]);
     }
-
-
 
 
 }

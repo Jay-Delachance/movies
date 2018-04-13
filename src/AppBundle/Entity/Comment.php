@@ -2,9 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert; // nous donne accès à l'annotation Assert
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+// nous donne accès à l'annotation Assert
 
 /**
  * Comment
@@ -73,9 +71,6 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $movie;
-
-
-
 
 
     public function __construct()
@@ -206,7 +201,6 @@ class Comment
     {
         $this->title = $title;
     }
-
 
 
 }

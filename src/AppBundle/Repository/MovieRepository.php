@@ -1,9 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
-use AppBundle\Entity\Movie;
+
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -39,26 +38,26 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
 
         // genres
         if ($genreId) {
-                //si j'ai un genre alors dans mon querybuilder j'ajouter un andWhere
-                // m.genre est égal à g donc on utilise g dans le g = :genreId
+            //si j'ai un genre alors dans mon querybuilder j'ajouter un andWhere
+            // m.genre est égal à g donc on utilise g dans le g = :genreId
             $qb->andWhere('g =:genreId')
                 ->setParameter("genreId", $genreId);
 
         }
         // si année min et année max sont sélectionnées alors on fait la recherche entre les 2 valeurs
-        if($yearMin AND $yearMax) {
+        if ($yearMin AND $yearMax) {
             $qb->andWhere('m.year BETWEEN :yearMin AND :yearMax')
                 ->setParameter("yearMin", $yearMin)
                 ->setParameter("yearMax", $yearMax);
         } elseif ($yearMin) { // sinon si on a uniquement l'année min, on recherche à partir de cette valeur
             $qb->andWhere('m.year > :yearMin')
                 ->setParameter("yearMin", $yearMin);
-        } elseif($yearMax){ // sinon si on a uniquement l'année max, on recherche à partir de cette valeur
+        } elseif ($yearMax) { // sinon si on a uniquement l'année max, on recherche à partir de cette valeur
             $qb->andWhere('m.year < :yearMax')
                 ->setParameter("yearMax", $yearMax);
         }
 
-        if($keyword){
+        if ($keyword) {
             $qb
                 // actors est la variable présente dans movie.php
                 ->join('m.actors', 'a')
@@ -70,7 +69,7 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
                 ->orWhere('d.name like :keyword')
                 ->orWhere('w.name like :keyword')
                 ->orWhere('m.title like :keyword')
-                ->setParameter("keyword", '%'.$keyword.'%');
+                ->setParameter("keyword", '%' . $keyword . '%');
         }
 
         $qb->setMaxResults(50);

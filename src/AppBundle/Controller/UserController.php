@@ -25,7 +25,7 @@ class UserController extends Controller
         $registerForm->handleRequest($request);
 
         // si le formulaire est soumis et valide...
-        if($registerForm->isSubmitted() && $registerForm->isValid()){
+        if ($registerForm->isSubmitted() && $registerForm->isValid()) {
 
             // hash le mot de passe
             $hash = $encoder->encodePassword($user, $user->getPassword());
@@ -52,7 +52,6 @@ class UserController extends Controller
     }
 
 
-
     public function loginAction(AuthenticationUtils $authUtils)
     {
         // get the login error if there is one
@@ -63,7 +62,7 @@ class UserController extends Controller
 
         return $this->render('user/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 
@@ -90,7 +89,7 @@ class UserController extends Controller
             "movie" => $movie
         ]);
 
-        if($previousWMovie == null) {
+        if ($previousWMovie == null) {
             // on crée un nouvel objet WatchlistItem qui va s'intégrer dans la page de la watchlist
             $wItem = new WatchlistItem();
             // on set la date, le film et le user (les paramètres de l'objet)
@@ -108,17 +107,16 @@ class UserController extends Controller
             // ça nous affiche ok dans l'inspecteur du navigateur
             die('ok');
 
-        } else{
+        } else {
             die('not');
         }
 
 
-
-/*
-        return $this->render(user/watchlist.html.twig, [
-            // affiche les détails du film
-            "previousWMovie" => $previousWMovie,
-        ]);*/
+        /*
+                return $this->render(user/watchlist.html.twig, [
+                    // affiche les détails du film
+                    "previousWMovie" => $previousWMovie,
+                ]);*/
 
     }
 
@@ -163,7 +161,7 @@ class UserController extends Controller
             "movie" => $movie
         ]);
 
-        if($wMovie != null){
+        if ($wMovie != null) {
             // récupère l'Entity Manager
             $em = $this->getDoctrine()->getManager();
             // on demande à doctrine de supprimer mon objet $wMovie

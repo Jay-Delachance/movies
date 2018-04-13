@@ -10,7 +10,6 @@
 
 }
 
-
 html, body {
     height: 100%;
 }
@@ -21,23 +20,22 @@ body {
 
 }
 
-
-#title{
+#title {
     font-family: carringtonregular, Verdana, Arial, Helvetica, sans-serif;
     font-size: 3em;
     color: black;
 }
 
-#title:hover{
+#title:hover {
     text-decoration: none;
 }
 
-.container{
+.container {
     flex: 1 0 auto;
     margin-bottom: 2em;
 }
 
-#menu{
+#menu {
     background-color: mediumturquoise;
     width: 100%;
     margin: auto;
@@ -46,21 +44,21 @@ body {
     z-index: 1;
 }
 
-#footer{
+#footer {
     flex-shrink: 0;
     text-align: center;
     background-color: mediumturquoise;
 }
 
-nav a{
-    color:white;
+nav a {
+    color: white;
 }
 
-#commentAdd{
+#commentAdd {
     margin-bottom: 1em;
 }
 
-.commentStyle{
+.commentStyle {
     border: solid 1px;
     border-radius: 1em;
     text-align: center;
@@ -74,23 +72,22 @@ nav a{
 }
 
 /* Pour agrandir au passage de la souris */
-#listMovies:hover{
+#listMovies:hover {
     transform: scale(1.1);
     box-shadow: 8px 8px 12px mediumturquoise;
 }
 
-
 /* Page de détail d'un film */
-#backgrImg{
+#backgrImg {
     min-height: 600px;
     text-align: center;
 }
 
-.card{
+.card {
     color: white;
 }
 
-#encartDetail{
+#encartDetail {
     display: flex;
     flex-direction: row;
     opacity: 0.7;
@@ -102,25 +99,26 @@ iframe {
     margin: auto;
 }
 
-.trailer{
+#trailerCard {
+    background-color: #DDDDDD;
+}
+
+.trailer {
     text-align: center;
     margin-top: 1em;
 }
 
-#encartVideo{
-    background-color: #0000F0;
-}
-
-input{
+input {
     min-width: 450px;
     text-align: center;
 }
 
-.cardComment{
+.cardComment {
     color: black;
 }
 
-#filter-form{
+#filter-form {
     display: flex;
 
 }
+

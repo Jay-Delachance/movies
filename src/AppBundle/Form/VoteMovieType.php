@@ -3,7 +3,6 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +16,6 @@ class VoteMovieType extends AbstractType
     {
         // Symfony sait quel type de champ on a besoin avec les annotations qu'on a mises dans l'entity du comment.php
         $builder
-
             ->add('vote', IntegerType::class, ["label" => "Your note from 1 to 10 where 10 is a masterpiece and 1 is a terrible movie"]);
     }
 

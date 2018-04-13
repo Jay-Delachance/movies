@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Movie
@@ -50,7 +49,6 @@ class Movie
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
-
 
 
     /**
@@ -398,6 +396,7 @@ class Movie
     {
         return $this->dateModified;
     }
+
     /**
      * Constructor
      */
@@ -578,7 +577,6 @@ class Movie
     }
 
 
-
     /**
      * Add votesMovie
      *
@@ -637,7 +635,6 @@ class Movie
     }
 
 
-
     /**
      * Add comment
      *
@@ -677,10 +674,6 @@ class Movie
     {
         $this->watchlistItem = $watchlistItem;
     }
-
-
-
-
 
 
     /**
